@@ -19,11 +19,14 @@ namespace ActiveRagdoll {
             NONE,
         }
 
+        
+        
         [Header("--- GENERAL ---")]
         [SerializeField] private BALANCE_MODE _balanceMode = BALANCE_MODE.STABILIZER_JOINT;
         public BALANCE_MODE BalanceMode { get { return _balanceMode; } }
         public float customTorsoAngularDrag = 0.05f;
-
+        public InputModule inputModule;
+        
         [Header("--- UPRIGHT TORQUE ---")]
         public float uprightTorque = 10000;
         [Tooltip("Defines how much torque percent is applied given the inclination angle percent [0, 1]")]
@@ -33,6 +36,7 @@ namespace ActiveRagdoll {
         [Header("--- MANUAL TORQUE ---")]
         public float manualTorque = 500;
         public float maxManualRotSpeed = 5;
+        public float jumpSpeed = 10;
 
         private Vector2 _torqueInput;
 
@@ -48,7 +52,8 @@ namespace ActiveRagdoll {
         private GameObject _stabilizerGameobject;
         private Rigidbody _stabilizerRigidbody;
         private ConfigurableJoint _stabilizerJoint;
-
+        public Rigidbody torso;
+        
         [Header("--- FREEZE ROTATIONS ---")]
         [SerializeField] private float freezeRotationSpeed = 5;
 
@@ -123,6 +128,13 @@ namespace ActiveRagdoll {
                     break;
 
                 default: break;
+            }
+
+            InputModule inputModule = gameObject.GetComponent<InputModule>();
+
+            if (Input.GetKeyDown(KeyCode.Space) && inputModule.IsOnFloor == true)
+            {
+                torso.velocity = jumpSpeed * Vector3.up;
             }
         }
 

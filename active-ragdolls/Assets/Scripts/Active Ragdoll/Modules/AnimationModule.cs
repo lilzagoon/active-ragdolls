@@ -8,6 +8,7 @@ namespace ActiveRagdoll {
     public class AnimationModule : Module {
         [Header("--- BODY ---")]
         /// <summary> Required to set the target rotations of the joints </summary>
+        /// 
         private Quaternion[] _initialJointsRotation;
         private ConfigurableJoint[] _joints;
         private Transform[] _animatedBones;
@@ -48,6 +49,7 @@ namespace ActiveRagdoll {
         private Vector3 _armsDir, _lookDir, _targetDir2D;
         private Transform _animTorso, _chest;
         private float _targetDirVerticalPercent;
+        
 
 
 

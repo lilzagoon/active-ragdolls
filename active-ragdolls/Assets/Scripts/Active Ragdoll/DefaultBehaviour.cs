@@ -33,7 +33,7 @@ public class DefaultBehaviour : MonoBehaviour {
         // This is a default implementation, where the input player is binded directly to
         // the ActiveRagdoll actions in a very simple way. But any implementation is
         // possible, such as assigning those same actions to the output of an AI system.
-
+        Cursor.lockState = CursorLockMode.Locked;
         _activeRagdoll.Input.OnMoveDelegates += MovementInput;
         _activeRagdoll.Input.OnMoveDelegates += _physicsModule.ManualTorqueInput;
         _activeRagdoll.Input.OnFloorChangedDelegates += ProcessFloorChanged;
